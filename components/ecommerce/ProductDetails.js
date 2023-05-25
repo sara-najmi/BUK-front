@@ -129,23 +129,6 @@ const ProductDetails = ({
                                                     </a>
                                                 </div>
                                                 <div className="product-extra-link2">
-                                                    <button
-                                                        onClick={(e) =>
-                                                            handleCart({
-                                                                ...product,
-                                                                quantity: quantity || 1
-                                                            })
-                                                        }
-                                                        className="button button-add-to-cart"
-                                                    >
-                                                        Add to cart
-                                                    </button>
-                                                    <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={(e) => handleWishlist(product)}>
-                                                        <i className="fi-rs-heart"></i>
-                                                    </a>
-                                                    <a aria-label="Compare" className="action-btn hover-up" onClick={(e) => handleCompare(product)}>
-                                                        <i className="fi-rs-shuffle"></i>
-                                                    </a>
                                                 </div>
                                             </div>
                                             <ul className="product-meta font-xs color-grey mt-50">

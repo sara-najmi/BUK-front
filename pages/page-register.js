@@ -3,6 +3,13 @@ import Layout from "../components/layout/Layout";
 
 
 function Login() {
+
+    const handleSubmit = event => {
+        debugger;
+        event.preventDefault();
+    };
+
+
     return (
         <>
             <Layout parent="Home" sub="Pages" subChild="Login & Register">
@@ -18,38 +25,27 @@ function Login() {
                                     <div className="login_wrap widget-taber-content background-white">
                                         <div className="padding_eight_all bg-white">
                                             <div className="heading_s1">
-                                                <h1 className="mb-5">Login</h1>
-                                                <p className="mb-30">Don't have an account? <Link href="/page-register"><a>Create here</a></Link></p>
+                                                <h1 className="mb-5">ثبت نام</h1>
+                                                <p className="mb-30">آیا اکانت دارید ؟ <Link href="/page-login"><a>ورود</a></Link></p>
                                             </div>
-                                            <form method="post">
+                                            <form onSubmit={(event)=>handleSubmit(event)}>
                                                 <div className="form-group">
-                                                    <input type="text" required="" name="email" placeholder="Username or Email *" />
-                                                </div>
-                                                <div className="form-group">
-                                                    <input required="" type="password" name="password" placeholder="Your password *" />
-                                                </div>
-                                                <div className="login_footer form-group">
-                                                    <div className="chek-form">
-                                                        <input type="text" required="" name="email" placeholder="Security code *" />
-                                                    </div>
-                                                    <span className="security-code">
-                                                        <b className="text-new">8</b>
-                                                        <b className="text-hot">6</b>
-                                                        <b className="text-sale">7</b>
-                                                        <b className="text-best">5</b>
-                                                    </span>
-                                                </div>
-                                                <div className="login_footer form-group mb-50">
-                                                    <div className="chek-form">
-                                                        <div className="custome-checkbox">
-                                                            <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
-                                                            <label className="form-check-label" htmlFor="exampleCheckbox1"><span>Remember me</span></label>
-                                                        </div>
-                                                    </div>
-                                                    <a className="text-muted" href="#">Forgot password?</a>
+                                                    <input type="text" required="" name="firstname" placeholder="نام" />
                                                 </div>
                                                 <div className="form-group">
-                                                    <button type="submit" className="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                                    <input type="text" required="" name="lastname" placeholder="نام خانوادگی" />
+                                                </div>
+                                                <div className="form-group">
+                                                    <input type="text" required="" name="nationalCode" placeholder="کد ملی" />
+                                                </div>
+                                                <div className="form-group">
+                                                    <input type="text" required="" name="uniId" placeholder="شماره دانشجویی / کد پرسنلی" />
+                                                </div>
+                                                <div className="form-group">
+                                                    <input required="" type="password" name="password" placeholder="گذرواژه" />
+                                                </div>
+                                                <div className="form-group">
+                                                    <button type="submit" className="btn btn-heading btn-block hover-up" name="login">ثبت نام</button>
                                                 </div>
                                             </form>
                                         </div>

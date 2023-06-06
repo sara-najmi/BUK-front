@@ -82,14 +82,14 @@ const SingleProduct = ({
                         {product.totalSell > 100 && (
                             <span className="best">Best Sell</span>
                         )}
-                        {product.discount.isActive && (
+                        {/* {product.discount.isActive && (
                             <span className="sale">Sale</span>
                         )}
                         {product.discount.percentage >= 5 && (
                             <span className="hot">
                                 {product.discount.percentage}%
                             </span>
-                        )}
+                        )} */}
                     </div>
                 </div>
                 <div className="product-content-wrap">

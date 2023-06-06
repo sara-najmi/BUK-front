@@ -75,7 +75,7 @@ const ProductDetails = ({
                                                     <span className="font-small ml-5 text-muted"> (32 reviews)</span>
                                                 </div>
                                             </div>
-                                            <div className="clearfix product-price-cover">
+                                            {/* <div className="clearfix product-price-cover">
                                                 <div className="product-price primary-color float-left">
                                                     <span className="current-price  text-brand">${product.price}</span>
                                                     <span>
@@ -83,7 +83,7 @@ const ProductDetails = ({
                                                         <span className="old-price font-md ml-15">{product.oldPrice ? `$ ${product.oldPrice}` : null}</span>
                                                     </span>
                                                 </div>
-                                            </div>
+                                            </div> */}
 
                                             <div className="short-desc mb-30">
                                                 <p className="font-lg">{product.desc}</p>

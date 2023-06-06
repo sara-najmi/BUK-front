@@ -4,15 +4,37 @@ import Layout from "../components/layout/Layout";
 
 function Login() {
 
-    const handleSubmit = event => {
-        debugger;
+    const handleSubmit = event =>   {
         event.preventDefault();
+        const response = fetch("http://localhost:8080/api/oauth/v1/register", {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify({
+                "firstname": event.target.firstname.value,
+                "lastname": event.target.lastname.value,
+                "nationalCode": event.target.nationalCode.value,
+                "uniId": event.target.uniId.value,
+                "password": event.target.password.value
+            }), // body data type must match "Content-Type" header
+          }).then(response => response.json())
+          .then(result => {
+            localStorage.setItem('token', JSON.stringify(result));
+            window.location.href='/'
+          });
     };
 
 
     return (
         <>
-            <Layout parent="Home" sub="Pages" subChild="Login & Register">
+            <Layout parent="خانه" sub="کاربر" subChild="ثبت نام">
             <div className="page-content pt-150 pb-150">
                 <div className="container">
                     <div className="row">

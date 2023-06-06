@@ -171,76 +171,7 @@ const Header = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block  font-heading">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <Link href="/shop-fullwidth">
-                                                    <a className="active">
-                                                        Home
-                                                        <i></i>
-                                                    </a>
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href="/shop-grid-right">
-                                                    <a>
-                                                        Shop
-                                                        <i className="fi-rs-angle-down"></i>
-                                                    </a>
-                                                </Link>
-                                                <ul className="sub-menu">
-                                                    <li>
-                                                        <Link href="/shop-fullwidth">
-                                                            <a>Shop - Wide</a>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/shop-cart">
-                                                            <a>Shop – Cart</a>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/shop-checkout">
-                                                            <a>Shop – Checkout</a>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <Link href="/#">
-                                                    <a>
-                                                        Pages
-                                                        <i className="fi-rs-angle-down"></i>
-                                                    </a>
-                                                </Link>
-                                                <ul className="sub-menu">
-                                                    
-                                                    <li>
-                                                        <Link href="/page-account">
-                                                            <a>My Account</a>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/page-login-register">
-                                                            <a>login/register</a>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/page-privacy-policy">
-                                                            <a>Privacy Policy</a>
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/page-404">
-                                                            <a>404 Page</a>
-                                                        </Link>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+
                             </div>
                             <div className="hotline d-none d-lg-flex">
                                 <img src="/assets/imgs/theme/icons/icon-headphone.svg" alt="hotline" />

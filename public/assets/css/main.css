@@ -2873,7 +2873,7 @@ label {
 }
 
 .breadcrumb {
-  display: inline-block;
+  display: flex;
   padding: 0;
   text-transform: capitalize;
   color: #7E7E7E;

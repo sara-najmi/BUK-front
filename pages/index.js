@@ -21,7 +21,7 @@ const ProductsFullWidth = ({ products, productFilters, fetchProduct }) => {
     let [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        fetchProduct(searchTerm, "/static/product.json", productFilters);
+        fetchProduct(searchTerm, "http://localhost:8080/api/product", productFilters);
         cratePagination();
     }, [productFilters, limit, pages, products.items.length]);
 
@@ -62,7 +62,7 @@ const ProductsFullWidth = ({ products, productFilters, fetchProduct }) => {
     };
     return (
         <>
-            <Layout parent="Home" sub="Shop" subChild="Wide">
+            <Layout parent="خانه" sub="محص" subChild="Wide" noBreadcrumb={"hidden"}>
                 <section className="mt-50 mb-50">
                     <div className="container">
                         <div className="row flex-row-reverse">

@@ -21,6 +21,12 @@ const Cart = ({
     deleteFromCart,
     clearCart,
 }) => {
+
+
+    if(!localStorage.getItem("token")){
+        window.location.href = "/page-login"
+    }
+
     const price = () => {
         let price = 0;
         cartItems.forEach((item) => (price += item.price * item.quantity));

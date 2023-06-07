@@ -2,6 +2,10 @@ import * as Types from '../constants/actionTypes'
 import storage from '../../util/localStorage';
 
 export const addToCart = product => dispatch => {
+    if(!localStorage.getItem("token")){
+        return window.location.href = "/page-login"
+    }
+
     const response = fetch("http://localhost:8080/api/cart/add-to-cart", {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             mode: "cors", // no-cors, *cors, same-origin

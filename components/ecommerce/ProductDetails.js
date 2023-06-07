@@ -91,13 +91,13 @@ const ProductDetails = ({
                                             <div className="attr-detail attr-color mb-15">
                                                 <strong className="mr-10">Color</strong>
                                                 <ul className="list-filter color-filter">
-                                                    {product.variations.map((clr, i) => (
+                                                    {/* {product.variations.map((clr, i) => (
                                                         <li key={i}>
                                                             <a href="#">
                                                                 <span className={`product-color-${clr}`}></span>
                                                             </a>
                                                         </li>
-                                                    ))}
+                                                    ))} */}
                                                 </ul>
                                             </div>
                                             <div className="attr-detail attr-size">

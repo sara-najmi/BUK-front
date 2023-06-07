@@ -54,7 +54,7 @@ const Header = ({
                                             </Link>
                                             <Link href="/shop-cart">
                                                 <a>
-                                                    <span className="lable">Cart</span>
+                                                    <span className="lable">سبد</span>
                                                 </a>
                                             </Link>
                                         </div>
@@ -67,7 +67,7 @@ const Header = ({
                                             </Link>
                                             <Link href="/page-account">
                                                 <a>
-                                                    <span className="lable ml-0">Account</span>
+                                                    <span className="lable ml-0">حساب</span>
                                                 </a>
                                             </Link>
                                             <div className="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
@@ -76,7 +76,7 @@ const Header = ({
                                                         <Link href="/page-account">
                                                             <a>
                                                                 <i className="fi fi-rs-user mr-10"></i>
-                                                                My Account
+                                                                کاربر   
                                                             </a>
                                                         </Link>
                                                     </li>
@@ -177,7 +177,7 @@ const Header = ({
                                 <img src="/assets/imgs/theme/icons/icon-headphone.svg" alt="hotline" />
 
                                 <p>
-                                    1900 - 888<span>Working 8:00 - 22:00</span>
+                                    034 - 33333333 <span>ساعات کاری 8:00 - 22:00</span>
                                 </p>
                             </div>
 

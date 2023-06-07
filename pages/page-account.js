@@ -1,14 +1,27 @@
 import Layout from "../components/layout/Layout";
 import Link from "next/link"
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 
 function Account() {
 
     const [activeIndex, setActiveIndex] = useState(1);
 
+    const [order,setOrder] = useState([]);
+
     const handleOnClick = (index) => {
         setActiveIndex(index); // remove the curly braces
     };
+
+    useEffect(() => {
+        let id =JSON.parse(localStorage.getItem("token")).user.id;
+        fetch("http://localhost:8080/api/invoice/user/" + id)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+            setOrder(data)
+        })
+      },[]);
 
 
     return (
@@ -23,22 +36,22 @@ function Account() {
                                         <div className="dashboard-menu">
                                             <ul className="nav flex-column" role="tablist">
                                                 <li className="nav-item">
-                                                    <a className={activeIndex === 1 ? "nav-link active" : "nav-link"} onClick={() => handleOnClick(1)}><i className="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
+                                                    <a className={activeIndex === 1 ? "nav-link active" : "nav-link"} onClick={() => handleOnClick(1)}><i className="fi-rs-settings-sliders mr-10"></i>داشبورد</a>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <a className={activeIndex === 2 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(2)}><i className="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                                    <a className={activeIndex === 2 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(2)}><i className="fi-rs-shopping-bag mr-10"></i>سفارشات</a>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <a className={activeIndex === 3 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(3)}><i className="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a>
+                                                    {/* <a className={activeIndex === 3 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(3)}><i className="fi-rs-shopping-cart-check mr-10"></i>Track Your Order</a> */}
                                                 </li>
                                                 <li className="nav-item">
-                                                    <a className={activeIndex === 4 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(4)}><i className="fi-rs-marker mr-10"></i>My Address</a>
+                                                    <a className={activeIndex === 4 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(4)}><i className="fi-rs-marker mr-10"></i>ادرس های من</a>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <a className={activeIndex === 5 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(5)}><i className="fi-rs-user mr-10"></i>Account details</a>
+                                                    {/* <a className={activeIndex === 5 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(5)}><i className="fi-rs-user mr-10"></i>Account details</a> */}
                                                 </li>
                                                 <li className="nav-item">
-                                                    <Link href="/page-login"><a className="nav-link"><i className="fi-rs-sign-out mr-10"></i>Logout</a></Link>
+                                                    <Link href="/page-login"><a className="nav-link"><i className="fi-rs-sign-out mr-10"></i>خروج</a></Link>
                                                 </li>
                                             </ul>
                                         </div>
@@ -48,55 +61,42 @@ function Account() {
                                             <div className={activeIndex === 1 ? "tab-pane fade active show" : "tab-pane fade "} >
                                                 <div className="card">
                                                     <div className="card-header">
-                                                        <h3 className="mb-0">Hello Rosie!</h3>
+                                                        <h3 className="mb-0">سلام {JSON.parse(localStorage.getItem("token")).user.firstname + " " + JSON.parse(localStorage.getItem("token")).user.lastname} عزيز</h3>
                                                     </div>
                                                     <div className="card-body">
-                                                        <p>
-                                                            From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>,<br />
-                                                            manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a>
-                                                        </p>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className={activeIndex === 2 ? "tab-pane fade active show" : "tab-pane fade "} >
                                                 <div className="card">
                                                     <div className="card-header">
-                                                        <h3 className="mb-0">Your Orders</h3>
+                                                        <h3 className="mb-0">سفارشات شما</h3>
                                                     </div>
                                                     <div className="card-body">
                                                         <div className="table-responsive">
                                                             <table className="table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Order</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Total</th>
-                                                                        <th>Actions</th>
+                                                                        <th>شماره سفارش</th>
+                                                                        <th>تاريخ</th>
+                                                                        <th>وضعيت</th>
+                                                                        <th>مبلغ</th>
+                                                                        {/* <th>Actions</th> */}
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
+                                                                    {
+                                                                        order.map((item,key) =>  (
                                                                     <tr>
-                                                                        <td>#1357</td>
-                                                                        <td>March 45, 2020</td>
+                                                                        <td>{item.id}</td>
+                                                                        <td>{item.createAt}</td>
                                                                         <td>Processing</td>
-                                                                        <td>$125.00 for 2 item</td>
-                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
+                                                                        <td>{item.total}</td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td>#2468</td>
-                                                                        <td>June 29, 2020</td>
-                                                                        <td>Completed</td>
-                                                                        <td>$364.00 for 5 item</td>
-                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>#2366</td>
-                                                                        <td>August 02, 2020</td>
-                                                                        <td>Completed</td>
-                                                                        <td>$280.00 for 3 item</td>
-                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
-                                                                    </tr>
+                                                                        ))
+                                                                    }
+                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>

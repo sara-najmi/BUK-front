@@ -19,14 +19,13 @@ const ProductId = ({ product }) => {
 
 
 ProductId.getInitialProps = async (params) => {
-    
-    const request = await fetch(`${server}/static/product.json`);
+    const request = await fetch(`http://localhost:8080/api/product/${params.query.slug}`);
     const data = await request.json();
 
-    const index = findProductIndex(data, params.query.slug);
+    //const index = findProductIndex(data, params.query.slug);
     // console.log(params);
 
-    return { product: data[index] };
+    return { product: data };
 };
 
 export default ProductId;

@@ -4,12 +4,34 @@ import Layout from "../components/layout/Layout";
 
 function Login() {
 
-    
+    const handleSubmit = event =>   {
+        event.preventDefault();
+        const response = fetch("http://localhost:8080/api/oauth/v1/authenticate", {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify({
+                "email": event.target.email.value,
+                "password": event.target.password.value,
+            }), // body data type must match "Content-Type" header
+          }).then(response => response.json())
+          .then(result => {
+            localStorage.setItem('token', JSON.stringify(result));
+            window.location.href='/'
+          });
+    };
 
 
     return (
         <>
-            <Layout parent="Home" sub="Pages" subChild="Login & Register">
+            <Layout parent="Home" sub="Pages" subChild="Login & Register" noBreadcrumb={"hidden"}>
                 <div className="page-content pt-150 pb-150">
                     <div className="container">
                         <div className="row">
@@ -22,38 +44,18 @@ function Login() {
                                         <div className="login_wrap widget-taber-content background-white">
                                             <div className="padding_eight_all bg-white">
                                                 <div className="heading_s1">
-                                                    <h1 className="mb-5">Login</h1>
-                                                    <p className="mb-30">Don't have an account? <Link href="/page-register"><a>Create here</a></Link></p>
+                                                    <h1 className="mb-5">ورود</h1>
+                                                    <p className="mb-30">اکانت ندارید؟ <Link href="/page-register"><a>ثبت نام</a></Link></p>
                                                 </div>
-                                                <form >
+                                                <form onSubmit={(event)=>handleSubmit(event)}>
                                                     <div className="form-group">
-                                                        <input type="text" required="" name="email" placeholder="Username or Email *" />
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <input required="" type="password" name="password" placeholder="Your password *" />
-                                                    </div>
-                                                    <div className="login_footer form-group">
-                                                        <div className="chek-form">
-                                                            <input type="text" required="" name="email" placeholder="Security code *" />
-                                                        </div>
-                                                        <span className="security-code">
-                                                            <b className="text-new">8</b>
-                                                            <b className="text-hot">6</b>
-                                                            <b className="text-sale">7</b>
-                                                            <b className="text-best">5</b>
-                                                        </span>
-                                                    </div>
-                                                    <div className="login_footer form-group mb-50">
-                                                        <div className="chek-form">
-                                                            <div className="custome-checkbox">
-                                                                <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
-                                                                <label className="form-check-label" htmlFor="exampleCheckbox1"><span>Remember me</span></label>
-                                                            </div>
-                                                        </div>
-                                                        <a className="text-muted" href="#">Forgot password?</a>
+                                                        <input type="text" required="" name="email" placeholder="کد ملی" />
                                                     </div>
                                                     <div className="form-group">
-                                                        <button type="submit" className="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                                        <input required="" type="password" name="password" placeholder="گذر واژه" />
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <button type="submit" className="btn btn-heading btn-block hover-up" name="login">ورود</button>
                                                     </div>
                                                 </form>
                                             </div>

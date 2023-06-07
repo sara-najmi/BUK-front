@@ -16,7 +16,7 @@ const SingleProduct = ({
 }) => {
     const handleCart = (product) => {
         addToCart(product);
-        toast("Product added to Cart !");
+        toast("محصول به سبد اضافه شد !");
     };
 
     const handleCompare = (product) => {
@@ -35,7 +35,7 @@ const SingleProduct = ({
                     <div className="product-img product-img-zoom">
                         <Link
                             href="/products/[slug]"
-                            as={`/products/${product.slug}`}
+                            as={`/products/${product.id}`}
                         >
                             <a>
                                 <img
@@ -101,7 +101,7 @@ const SingleProduct = ({
                     <h2>
                         <Link
                             href="/products/[slug]"
-                            as={`/products/${product.slug}`}
+                            as={`/products/${product.id}`}
                         >
                             <a>{product.title}</a>
                         </Link>
@@ -122,7 +122,7 @@ const SingleProduct = ({
 
                     <div>
                         <span className="font-small text-muted">
-                            By <Link href="/vendor/1"><a>NestFood</a></Link>
+                            تامین کننده <Link href="/vendor/1"><a>دانشگاه باهنر</a></Link>
                         </span>
                     </div>
 
@@ -136,7 +136,7 @@ const SingleProduct = ({
                                 className="add"
                                 onClick={(e) => handleCart(product)}
                             >
-                                <i className="fi-rs-shopping-cart mr-5"></i> Add
+                                <i className="fi-rs-shopping-cart mr-1"></i> افزودن
                             </a>
                         </div>
                     </div>

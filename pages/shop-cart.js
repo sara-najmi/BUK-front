@@ -28,25 +28,42 @@ const Cart = ({
         return price;
     };
 
+    const handleCart = event =>   {
+        const response = fetch("http://localhost:8080/api/invoice", {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify({
+                "user" : {
+                    id:JSON.parse(localStorage.getItem("token")).user.id,
+                }
+            }), // body data type must match "Content-Type" header
+          }).then(response => response.json())
+          .then(result => {
+            clearCart()
+          });
+    };
+
     return (
         <>
-            <Layout parent="Home" sub="Shop" subChild="Cart">
+            <Layout parent="حانه" sub="فروشگاه" subChild="سبد">
                 <section className="mt-50 mb-50">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-8 mb-40">
-                                <h1 className="heading-2 mb-10">Your Cart</h1>
+                                <h1 className="heading-2 mb-10">سبد خرید شما</h1>
                                 <div className="d-flex justify-content-between">
                                     <h6 className="text-body">
-                                        There are{" "}
+                                        {" "}
                                         <span className="text-brand">3</span>{" "}
-                                        products in your cart
-                                    </h6>
-                                    <h6 className="text-body">
-                                        <a href="#" className="text-muted">
-                                            <i className="fi-rs-trash mr-5"></i>
-                                            Clear Cart
-                                        </a>
+                                        کالاهای سبد حرید شما
                                     </h6>
                                 </div>
                             </div>
@@ -54,7 +71,7 @@ const Cart = ({
                         <div className="row">
                             <div className="col-lg-8">
                                 <div className="table-responsive shopping-summery">
-                                    {cartItems.length <= 0 && "No Products"}
+                                    {cartItems.length <= 0 && "کالایی موجود نیست"}
                                     <table
                                         className={
                                             cartItems.length > 0
@@ -65,13 +82,13 @@ const Cart = ({
                                         <thead>
                                             <tr className="main-heading">
                                                 <th className="custome-checkbox start pl-30" colSpan="2">
-                                                    Product
+                                                    کالا
                                                 </th>
-                                                <th scope="col">Unit Price</th>
-                                                <th scope="col">Quantity</th>
-                                                <th scope="col">Subtotal</th>
+                                                <th scope="col">قیمت واحد</th>
+                                                <th scope="col">تعداد</th>
+                                                <th scope="col">فی</th>
                                                 <th scope="col" className="end">
-                                                    Remove
+                                                    حدف 
                                                 </th>
                                             </tr>
                                         </thead>
@@ -187,7 +204,7 @@ const Cart = ({
                                                             className="text-muted"
                                                         >
                                                             <i className="fi-rs-cross-small"></i>
-                                                            Clear Cart
+                                                            پاک کردن سبد
                                                         </a>
                                                     )}
                                                 </td>
@@ -195,17 +212,11 @@ const Cart = ({
                                         </tbody>
                                     </table>
                                 </div>
-                                <div className="cart-action text-end">
-                                    <a className="btn ">
-                                        <i className="fi-rs-shopping-bag mr-10"></i>
-                                        Continue Shopping
-                                    </a>
-                                </div>
                                 <div className="divider center_icon mt-50 mb-50">
                                     <i className="fi-rs-fingerprint"></i>
                                 </div>
                                 <div className="row mb-50">
-                                    <div className="col-lg-6 col-md-12">
+                                    {/* <div className="col-lg-6 col-md-12">
                                         <div className="heading_s1 mb-3">
                                             <h4>Calculate Shipping</h4>
                                         </div>
@@ -1050,18 +1061,18 @@ const Cart = ({
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="col-lg-6 col-md-12">
                                         <div className="border p-md-4 p-30 border-radius cart-totals">
                                             <div className="heading_s1 mb-3">
-                                                <h4>Cart Totals</h4>
+                                                <h4>مجموع حرید</h4>
                                             </div>
                                             <div className="table-responsive">
                                                 <table className="table">
                                                     <tbody>
                                                         <tr>
                                                             <td className="cart_total_label">
-                                                                Cart Subtotal
+                                                                لیست محصول
                                                             </td>
                                                             <td className="cart_total_amount">
                                                                 <span className="font-lg fw-900 text-brand">
@@ -1071,16 +1082,16 @@ const Cart = ({
                                                         </tr>
                                                         <tr>
                                                             <td className="cart_total_label">
-                                                                Shipping
+                                                                هزینه حمل
                                                             </td>
                                                             <td className="cart_total_amount">
                                                                 <i className="ti-gift mr-5"></i>
-                                                                Free Shipping
+                                                                رایگان
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td className="cart_total_label">
-                                                                Total
+                                                                مجموع
                                                             </td>
                                                             <td className="cart_total_amount">
                                                                 <strong>
@@ -1094,10 +1105,10 @@ const Cart = ({
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <a href="#" className="btn ">
+                                            <button onClick={(event) => handleCart(event)} className="btn ">
                                                 <i className="fi-rs-box-alt mr-10"></i>
-                                                Proceed To CheckOut
-                                            </a>
+                                                ادامه برای پرداخت
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
